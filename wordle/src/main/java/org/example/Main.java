@@ -37,7 +37,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int chance = 1;
+        int attempt = 1;
         Main obj = new Main();
         Scanner sc = new Scanner(System.in);
         String word = Util.getRandomWord();
@@ -53,20 +53,19 @@ public class Main {
             if(user_word.length() == 5){
                 gameResults = obj.searchWord(user_word, word);
                 System.out.println(gameResults[0]);
-                System.out.println(word);
                 if(Integer.valueOf(gameResults[1]) == word.length()){
                     System.out.println("*********************************");
                     System.out.println("**   Congratulations you won!  **");
                     System.out.println("*********************************\n");
                     break;
-                } else if (Integer.valueOf(gameResults[1]) != word.length() && chance == 5) {
+                } else if (Integer.valueOf(gameResults[1]) != word.length() && attempt == 6) {
                     System.out.println("*********************************");
                     System.out.println("**        Sorry you lost       **");
                     System.out.println("**       The word was " + word +"    **");
                     System.out.println("*********************************\n");
                     break;
                 }
-                chance++;
+                attempt++;
             }
         }
     }
