@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 public class Main {
-    public String [] searchWord(String userInput, String computerInput){
+    public static String [] searchWord(String userInput, String computerInput){
         int i = 0;
         int j = 0;
         int hitCount = 0;
@@ -37,8 +37,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int attempt = 1;
-        Main obj = new Main();
+        int attempt = 6;
         Scanner sc = new Scanner(System.in);
         String word = Util.getRandomWord();
         String [] gameResults = new String[2];
@@ -51,21 +50,24 @@ public class Main {
             System.out.println("Enter a five letter word\n");
             String user_word = sc.nextLine();
             if(user_word.length() == 5){
-                gameResults = obj.searchWord(user_word, word);
+                gameResults = searchWord(user_word, word);
                 System.out.println(gameResults[0]);
                 if(Integer.valueOf(gameResults[1]) == word.length()){
                     System.out.println("*********************************");
                     System.out.println("**   Congratulations you won!  **");
                     System.out.println("*********************************\n");
                     break;
-                } else if (Integer.valueOf(gameResults[1]) != word.length() && attempt == 6) {
+                } else if (Integer.valueOf(gameResults[1]) != word.length() && attempt == 0) {
                     System.out.println("*********************************");
                     System.out.println("**        Sorry you lost       **");
                     System.out.println("**       The word was " + word +"    **");
                     System.out.println("*********************************\n");
                     break;
                 }
-                attempt++;
+                attempt--;
+                System.out.println("You have " + attempt + " attempts left");
+            } else {
+                System.out.println("Word length is less than five letters");
             }
         }
     }
